@@ -1,6 +1,6 @@
 # Economics of Kastovia
 
-A simple static website for the Economics of Kastovia project.
+ts so broken rn 💔🥀
 
 ## Structure
 
