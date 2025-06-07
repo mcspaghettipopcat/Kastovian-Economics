@@ -5,3 +5,5 @@
 # About
 
 This is for my own pesonal projects so it isnt relevant to anyhing in the real world lol
+
+**Visit it at:** https://mcspaghettipopcat.github.io/Kastovian-Economics/
