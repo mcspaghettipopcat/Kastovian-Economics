@@ -3,16 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Economics of Kastovia</title>
+    <title>Kastovia National Economic Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-    <h1>Welcome to the Economics of Kastovia</h1>
-    <p>This is a placeholder page. Update with your content.</p>
-    <img src="images/placeholder.jpg" alt="Placeholder Image">
+<body class="bg-slate-900 text-slate-100">
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header id="header" class="header-gradient text-white shadow-lg sticky top-0 z-50">
+             <div class="container mx-auto px-4 py-4 sm:py-5">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-4">
+                        <img src="images/kastovia_coat_of_arms.png" alt="Kastovia Coat of Arms" class="header-coa">
+                        <h1 class="text-xl sm:text-2xl font-semibold tracking-tight flex items-center">
+                             <img src="images/kastovia_flag.png" alt="Kastovia Flag" class="flag-icon">
+                             <strong>Kastovia National Economic Dashboard</strong>
+                        </h1>
+                    </div>
+                    <div class="flex items-center space-x-3 text-sm">
+                        <span class="px-3 py-1 bg-blue-600/80 rounded-full font-medium hidden sm:inline-block">Live Data</span>
+                        <i class="fas fa-clock text-blue-300 hidden sm:inline-block"></i>
+                        <span class="text-blue-300">Last update: <span class="font-medium">Today</span></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8 flex-grow">
+            <!-- Key Metrics -->
+            <section class="mb-12" data-animate>
+                <h2 class="text-xl font-semibold mb-6 text-blue-300 border-b border-slate-700 pb-2">Key Economic Indicators (2025)</h2>
+                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- GDP Card -->
+                    <div class="dashboard-card rounded-xl shadow-md overflow-hidden animate-entry" style="animation-delay: 0.1s;">
+                        <div class="p-6">
+                             <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <p class="text-slate-400 text-sm font-medium uppercase tracking-wider">Nominal GDP</p>
+                                    <h3 class="text-3xl font-bold mt-1 text-white">$17 Trillion</h3>
+                                    <p class="text-slate-400 text-sm mt-1">₽510 Trillion</p>
+                                </div>
+                                <div class="bg-blue-900/50 p-3 rounded-lg border border-blue-700">
+                                    <i class="fas fa-globe text-blue-400 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
     <script src="js/script.js"></script>
-    <a>
-        <a href="code.html">Code</a>
-    </a>
 </body>
 </html> 
