@@ -113,7 +113,6 @@
                 <a href="#" class="nav-item px-2 py-1 font-medium hover:text-kastovian-gold" data-tab="sectors">Economic Sectors</a>
                 <a href="#" class="nav-item px-2 py-1 font-medium hover:text-kastovian-gold" data-tab="analysis">Analysis</a>
                 <a href="#" class="nav-item px-2 py-1 font-medium hover:text-kastovian-gold" data-tab="taxation">Taxation</a>
-                <a href="#" class="nav-item px-2 py-1 font-medium hover:text-kastovian-gold" data-tab="income">Income</a>
             </div>
         </div>
     </nav>
@@ -391,6 +390,21 @@
                             <p class="text-2xl font-bold">$94,400 <span class="text-sm text-green-600">↑ 3.2%</span></p>
                             <p class="text-sm text-gray-600">Global rank: 8th</p>
                         </div>
+                        <div class="stat-card bg-white p-4 rounded-lg shadow-sm border-l-pink-500">
+                            <h3 class="font-semibold text-gray-700">Start-Up Density</h3>
+                            <p class="text-2xl font-bold">170</p>
+                            <p class="text-sm text-gray-600">Per 100k people</p>
+                            <div class="mt-2">
+                                <div class="flex space-x-1">
+                                    <div class="h-8 w-1 bg-pink-300 rounded-t-full"></div>
+                                    <div class="h-12 w-1 bg-pink-400 rounded-t-full"></div>
+                                    <div class="h-16 w-1 bg-pink-500 rounded-t-full"></div>
+                                    <div class="h-10 w-1 bg-pink-400 rounded-t-full"></div>
+                                    <div class="h-8 w-1 bg-pink-300 rounded-t-full"></div>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-1">Growth trend: +15% YoY</p>
+                            </div>
+                       </div>
                     </div>
                     
                     <!-- Column 2 -->
@@ -438,20 +452,15 @@
                                 <p class="text-xs text-gray-500 mt-1">Historic low</p>
                             </div>
                         </div>
-                        <div class="stat-card bg-white p-4 rounded-lg shadow-sm border-l-pink-500">
-                            <h3 class="font-semibold text-gray-700">Start-Up Density</h3>
-                            <p class="text-2xl font-bold">170</p>
-                            <p class="text-sm text-gray-600">Per 100k people</p>
-                            <div class="mt-2">
-                                <div class="flex space-x-1">
-                                    <div class="h-8 w-1 bg-pink-300 rounded-t-full"></div>
-                                    <div class="h-12 w-1 bg-pink-400 rounded-t-full"></div>
-                                    <div class="h-16 w-1 bg-pink-500 rounded-t-full"></div>
-                                    <div class="h-10 w-1 bg-pink-400 rounded-t-full"></div>
-                                    <div class="h-8 w-1 bg-pink-300 rounded-t-full"></div>
-                                </div>
-                                <p class="text-xs text-gray-500 mt-1">Growth trend: +15% YoY</p>
-                            </div>
+                        <div class="stat-card bg-white p-4 rounded-lg shadow-sm border-l-blue-500">
+                            <h3 class="font-semibold text-gray-700">Average Salary</h3>
+                            <p class="text-2xl font-bold">$65,500</p>
+                            <p class="text-sm text-gray-600">₽1.96 Million</p>
+                        </div>
+                        <div class="stat-card bg-white p-4 rounded-lg shadow-sm border-l-red-500">
+                            <h3 class="font-semibold text-gray-700">Median Salary</h3>
+                            <p class="text-2xl font-bold">$52,000</p>
+                            <p class="text-sm text-gray-600">₽2.02 Million</p>
                         </div>
                     </div>
                     
@@ -493,6 +502,11 @@
                                     <span>Public: 22%</span>
                                 </div>
                             </div>
+                        </div>
+                        <div class="stat-card bg-white p-4 rounded-lg shadow-sm border-l-yellow-500">
+                            <h3 class="font-semibold text-gray-700">Top 10% Earners Start</h3>
+                            <p class="text-2xl font-bold">$180,000+</p>
+                            <p class="text-sm text-gray-600">₽5.4 Million+</p>
                         </div>
                     </div>
                 </div>
@@ -682,6 +696,7 @@
                     <div class="stat-card bg-white p-5 rounded-lg shadow-sm border-l-teal-500">
                         <h3 class="font-semibold text-gray-800 mb-2">Avg. Apartment Size</h3>
                         <p class="text-2xl font-bold">65 sqm</p>
+                        <p class="text-sm text-gray-600">National Average</p>
                     </div>
                 </div>
                 
@@ -693,7 +708,7 @@
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-6">
                     <div class="bg-blue-50 p-3 rounded-lg">
                         <p class="text-xs text-blue-800 mb-1">Semiconductors</p>
-                        <p class="font-bold">₽480K ($16K)</p>
+                        <p class="font-bold">₽360K ($12K)</p>
                     </div>
                     <div class="bg-green-50 p-3 rounded-lg">
                         <p class="text-xs text-green-800 mb-1">Defense</p>
@@ -709,7 +724,7 @@
                     </div>
                     <div class="bg-yellow-50 p-3 rounded-lg">
                         <p class="text-xs text-yellow-800 mb-1">Finance</p>
-                        <p class="font-bold">₽180K ($6K)</p>
+                        <p class="font-bold">₽135K ($4.5K)</p>
                     </div>
                     <div class="bg-red-50 p-3 rounded-lg">
                         <p class="text-xs text-red-800 mb-1">Education</p>
@@ -1254,25 +1269,18 @@
         <div id="taxation" class="tab-content">
             <div class="flex flex-col md:flex-row md:space-x-6">
                 <div class="bg-white rounded-lg shadow-md p-6 mb-6 flex-1">
-                    <h2 class="text-2xl font-bold mb-4 text-kastovian-blue border-b pb-2">Tax Revenue Composition</h2>
-                    <div class="chart-container">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Government Revenue Sources (%)</h3>
+                    <div class="chart-container">    
                         <canvas id="taxPieChart"></canvas>
                     </div>
-                    <p class="text-sm text-gray-600 mt-4">Breakdown of government tax revenue sources for 2025.</p>
                 </div>
                 <div class="bg-white rounded-lg shadow-md p-6 mb-6 flex-1">
-                    <h2 class="text-2xl font-bold mb-4 text-kastovian-blue border-b pb-2">Government Spending Composition</h2>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Government Expenditure Allocation (%)</h3>
                     <div class="chart-container">
                         <canvas id="spendingPieChart"></canvas>
                     </div>
-                    <p class="text-sm text-gray-600 mt-4">Breakdown of government spending categories for 2025.</p>
                 </div>
             </div>
-        </div>
-
-        <!-- Income Tab Content -->
-        <div id="income" class="tab-content">
-            <!-- Add Income content here -->
         </div>
     </main>
 
@@ -1416,7 +1424,7 @@
                     labels: ['Semiconductors', 'Defense', 'Software/AI', 'Healthcare', 'Finance', 'Education'],
                     datasets: [{
                         label: 'Average Monthly Salary (₽)',
-                        data: [480, 240, 210, 165, 180, 120],
+                        data: [360, 240, 210, 165, 135, 120],
                         backgroundColor: [
                             'rgba(59, 130, 246, 0.7)',
                             'rgba(239, 68, 68, 0.7)',
