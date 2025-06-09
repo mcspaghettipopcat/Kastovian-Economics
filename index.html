@@ -80,6 +80,47 @@
             transform-origin: 50% 50%;
             transition: stroke-dashoffset 0.5s;
         }
+        .pill-tab {
+            border: 2px solid #ffd700;
+            color: #ffd700;
+            background: transparent;
+            user-select: none;
+        }
+        .pill-tab * {
+            user-select: none;
+        }
+        .pill-tab.active-tab, .pill-tab:focus {
+            background: #ffd700;
+            color: #0d47a1;
+            border-color: #ffd700;
+        }
+        .pill-tab:hover:not(.active-tab) {
+            background: rgba(255, 215, 0, 0.15);
+            color: #ffd700;
+        }
+        .icon-placeholder {
+            display: inline-block;
+            width: 1.25em;
+            height: 1.25em;
+            background: transparent;
+        }
+        @media (max-width: 200px) {
+            .pill-tab {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+                font-size: 0.95rem;
+            }
+        }
+        .scrollbar-hide {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* IE 10+ */
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none; /* Chrome/Safari/Webkit */
+        }
+        .cursor-grabbing {
+            cursor: grabbing !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
@@ -102,21 +143,87 @@
     </header>
 
     <!-- Main Navigation -->
-    <nav class="bg-kastovian-blue text-white shadow-lg">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-wrap justify-between md:justify-start space-x-1 md:space-x-8 py-4 overflow-x-auto">
-                <a href="#" class="nav-item px-2 py-1 font-medium hover:text-kastovian-gold active-tab" data-tab="overview">Overview</a>
-                <a href="#" class="nav-item px-2 py-1 font-medium hover:text-kastovian-gold" data-tab="indicators">Key Indicators</a>
-                <a href="#" class="nav-item px-2 py-1 font-medium hover:text-kastovian-gold" data-tab="hdi">Human Development</a>
-                <a href="#" class="nav-item px-2 py-1 font-medium hover:text-kastovian-gold" data-tab="labor">Labor Market</a>
-                <a href="#" class="nav-item px-2 py-1 font-medium hover:text-kastovian-gold" data-tab="energy">Energy & Environment</a>
-                <a href="#" class="nav-item px-2 py-1 font-medium hover:text-kastovian-gold" data-tab="defense">Defense</a>
-                <a href="#" class="nav-item px-2 py-1 font-medium hover:text-kastovian-gold" data-tab="sectors">Economic Sectors</a>
-                <a href="#" class="nav-item px-2 py-1 font-medium hover:text-kastovian-gold" data-tab="analysis">Analysis</a>
-                <a href="#" class="nav-item px-2 py-1 font-medium hover:text-kastovian-gold" data-tab="taxation">Taxation</a>
+    <nav class="bg-kastovian-blue text-white shadow-lg relative">   
+        <div class="container mx-auto px-4 relative">
+            <button id="navLeft" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-kastovian-blue text-kastovian-gold p-2 rounded-full shadow-md hidden md:block" aria-label="Scroll left" style="transition: opacity 0.2s;"><i class="fas fa-chevron-left"></i></button>
+            <div id="navPillsScroll" class="flex flex-nowrap gap-2 py-4 overflow-x-auto scrollbar-hide relative" style="scroll-behavior: smooth;">
+                <a href="#" class="nav-item pill-tab active-tab flex items-center px-5 py-2 font-medium rounded-full transition-all duration-200" data-tab="overview"><span class="fas fa-house mr-2"></span>Overview</a>
+                <a href="#" class="nav-item pill-tab flex items-center px-5 py-2 font-medium rounded-full transition-all duration-200" data-tab="indicators"><span class="fas fa-ruble-sign mr-2"></span>Key Indicators</a>
+                <a href="#" class="nav-item pill-tab flex items-center px-5 py-2 font-medium rounded-full transition-all duration-200" data-tab="hdi"><span class="fa-solid fa-user-group mr-2"></span>Human Development</a>
+                <a href="#" class="nav-item pill-tab flex items-center px-5 py-2 font-medium rounded-full transition-all duration-200" data-tab="labor"><span class="fa-solid fa-briefcase mr-3"></span>Labor Market</a>
+                <a href="#" class="nav-item pill-tab flex items-center px-5 py-2 font-medium rounded-full transition-all duration-200" data-tab="energy"><span class="fa-solid fa-bolt mr-2"></span>Energy & Environment</a>
+                <a href="#" class="nav-item pill-tab flex items-center px-5 py-2 font-medium rounded-full transition-all duration-200" data-tab="defense"><span class="fa-solid fa-shield-halved mr-2"></span>Defense</a>
+                <a href="#" class="nav-item pill-tab flex items-center px-5 py-2 font-medium rounded-full transition-all duration-200" data-tab="sectors"><span class="fa-solid fa-hand-holding-dollar mr-2"></span>Economic Sectors</a>
+                <a href="#" class="nav-item pill-tab flex items-center px-5 py-2 font-medium rounded-full transition-all duration-200" data-tab="analysis"><span class="fas fa-magnifying-glass mr-2"></span>Analysis</a>
+                <a href="#" class="nav-item pill-tab flex items-center px-5 py-2 font-medium rounded-full transition-all duration-200" data-tab="taxation"><span class="fas fa-landmark mr-2"></span>Taxation</a>
             </div>
+            <button id="navRight" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-kastovian-blue text-kastovian-gold p-2 rounded-full shadow-md hidden md:block" aria-label="Scroll right" style="transition: opacity 0.2s;"><i class="fas fa-chevron-right"></i></button>
         </div>
     </nav>
+    <script>
+    // Horizontal drag-to-scroll for nav pills
+    const navScroll = document.getElementById('navPillsScroll');
+    let isDown = false;
+    let startX, scrollLeft;
+    navScroll.addEventListener('mousedown', (e) => {
+        isDown = true;
+        navScroll.classList.add('cursor-grabbing');
+        startX = e.pageX - navScroll.offsetLeft;
+        scrollLeft = navScroll.scrollLeft;
+    });
+    navScroll.addEventListener('mouseleave', () => {
+        isDown = false;
+        navScroll.classList.remove('cursor-grabbing');
+    });
+    navScroll.addEventListener('mouseup', () => {
+        isDown = false;
+        navScroll.classList.remove('cursor-grabbing');
+    });
+    navScroll.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - navScroll.offsetLeft;
+        const walk = (x - startX) * 1.5; //scroll-fast
+        navScroll.scrollLeft = scrollLeft - walk;
+    });
+    // Touch support
+    navScroll.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - navScroll.offsetLeft;
+        scrollLeft = navScroll.scrollLeft;
+    });
+    navScroll.addEventListener('touchend', () => {
+        isDown = false;
+    });
+    navScroll.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        const x = e.touches[0].pageX - navScroll.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        navScroll.scrollLeft = scrollLeft - walk;
+    });
+    // Arrow button scroll
+    const navLeft = document.getElementById('navLeft');
+    const navRight = document.getElementById('navRight');
+    function updateNavArrows() {
+        // Show/hide arrows based on scroll position
+        if (navScroll.scrollWidth > navScroll.clientWidth) {
+            navLeft.style.display = navScroll.scrollLeft > 10 ? 'block' : 'none';
+            navRight.style.display = navScroll.scrollLeft < navScroll.scrollWidth - navScroll.clientWidth - 10 ? 'block' : 'none';
+        } else {
+            navLeft.style.display = 'none';
+            navRight.style.display = 'none';
+        }
+    }
+    navLeft.addEventListener('click', () => {
+        navScroll.scrollBy({ left: -150, behavior: 'smooth' });
+    });
+    navRight.addEventListener('click', () => {
+        navScroll.scrollBy({ left: 150, behavior: 'smooth' });
+    });
+    navScroll.addEventListener('scroll', updateNavArrows);
+    window.addEventListener('resize', updateNavArrows);
+    document.addEventListener('DOMContentLoaded', updateNavArrows);
+    </script>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-6">
@@ -305,7 +412,8 @@
                   </div>
                 </div>
               </div>
-              <!-- New Card for future content -->
+
+              <!-- R&D -->
               <div class="w-full md:w-1/2 px-2 mb-4">
                 <div class="bg-white rounded-lg shadow-md p-6 h-full">
                   <h2 class="text-2xl font-bold mb-4 text-kastovian-blue border-b pb-2">Research & Development</h2>
@@ -315,7 +423,7 @@
                   <div class="mt-6">
                       <h4 class="text-sm font-semibold text-black mb-3 border-t border-gray-200 pt-4">R&D Investment Profile</h4>
                       <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                          <div class="flex justify-between"><span class="text-gray-600">R&D as % GDP</span><span class="font-medium text-right text-blue-300">3.8%</span></div>
+                          <div class="flex justify-between"><span class="text-gray-600">R&D as % GDP</span><span class="font-medium text-right text-green-600">3.8%</span></div>
                           <div class="flex justify-between"><span class="text-gray-600">Patents (2025)</span><span class="font-medium text-right">438,500</span></div>
                           <div class="flex justify-between"><span class="text-gray-600">Private Sector Share</span><span class="font-medium text-right">78%</span></div>
                           <div class="flex justify-between"><span class="text-gray-600">Public Sector Share</span><span class="font-medium text-right">22%</span></div>
@@ -326,9 +434,6 @@
               </div>
             </div>
             
-            <!-- R&D -->
-                
-
             <!-- Top Companies -->
             <div class="bg-white rounded-xl shadow-md p-6 mb-8">
                 <h2 class="text-xl font-bold text-gray-800 mb-6">Top Corporate Entities</h2>
@@ -348,14 +453,14 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
-                                            <i class="fas fa-microchip text-lg"></i>
+                                            <i class="fas fa-globe text-lg"></i>
                                         </div>
                                         <div class="ml-4">
                                             <div class="text-sm font-medium text-gray-900">Izhkod Systems Conglomerate</div>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Semiconductors, Electronics, AI</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Commercial, Electronics, AI</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">8.7%</td>
                             </tr>
                             <tr class="hover:bg-gray-50">
@@ -407,7 +512,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">5</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-10 w-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600">
+                                        <div class="flex-shrink-0 h-10 w-10 bg-gray-300 rounded-lg flex items-center justify-center text-gray-900">
                                             <i class="fas fa-lightbulb text-lg"></i>
                                         </div>
                                         <div class="ml-4">
@@ -418,6 +523,84 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Venture Capital, Technology</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">3.5%</td>
                             </tr>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">6</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-700">
+                                        <i class="fas fa-microchip text-lg"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">KASPROPOL Foundry</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Semiconductors</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">3.5%</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">7</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-10 w-10 bg-red-200 rounded-lg flex items-center justify-center text-red-700">
+                                        <i class="fas fa-chart-line text-lg"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">PJSC Magnit</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Consumer Goods</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2.8%</td>
+                        </tr>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">8</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 h-10 w-10 bg-indigo-300 rounded-lg flex items-center justify-center text-indigo-800">
+                                    <i class="fas fa-atom text-lg"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <div class="text-sm font-medium text-gray-900">KasAtom</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Nuclear Energy</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2.4%</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">9</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 h-10 w-10 bg-yellow-100 rounded-lg flex items-center justify-center text-yellow-400">
+                                    <i class="fas fa-power-off text-lg"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <div class="text-sm font-medium text-gray-900">Inter KAO</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Electricity, Infrastructure</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2.1%</td>
+                    </tr>
+                </tr>
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">10</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 h-10 w-10 bg-green-200 rounded-lg flex items-center justify-center text-green-600">
+                                <i class="fas fa-mountain text-lg"></i>
+                            </div>
+                            <div class="ml-4">
+                                <div class="text-sm font-medium text-gray-900">Zendaypavolsk</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Metals, Mining</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1.9%</td>
+                </tr>
                         </tbody>
                     </table>
                 </div>
