@@ -95,8 +95,12 @@
             border-color: #ffd700;
         }
         .pill-tab:hover:not(.active-tab) {
-            background: rgba(255, 215, 0, 0.15);
+            background: rgba(255, 215, 0, 0.25);
             color: #ffd700;
+            box-shadow: 0 2px 12px 0 rgba(34, 197, 94, 0.10), 0 1.5px 6px 0 rgba(13, 71, 161, 0.10);
+            transform: scale(1.06);
+            border-color: #ffd700;
+            transition: all 0.18s cubic-bezier(.4,2,.6,1);
         }
         .icon-placeholder {
             display: inline-block;
@@ -143,7 +147,7 @@
     </header>
 
     <!-- Main Navigation -->
-    <nav class="bg-kastovian-blue text-white shadow-lg relative">   
+    <nav class="bg-gradient-to-r from-kastovian-blue to-blue-900 text-white shadow-lg relative">   
         <div class="container mx-auto px-4 relative">
             <button id="navLeft" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-kastovian-blue text-kastovian-gold p-2 rounded-full shadow-md hidden md:block" aria-label="Scroll left" style="transition: opacity 0.2s;"><i class="fas fa-chevron-left"></i></button>
             <div id="navPillsScroll" class="flex flex-nowrap gap-2 py-4 overflow-x-auto scrollbar-hide relative" style="scroll-behavior: smooth;">
@@ -235,7 +239,7 @@
                     <div class="bg-white rounded-lg shadow-md p-6 h-full flex flex-col">
                         <h2 class="text-2xl font-bold mb-4 text-kastovian-blue border-b pb-2">Economy at a Glance (2025)</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 h-full">
-                            <div class="stat-card bg-gradient-to-r from-gray-50 to-white p-4 rounded border-l-kastovian-blue h-full flex flex-col">
+                            <div class="stat-card bg-gradient-to-r from-blue-200 to-white p-4 rounded border-l-kastovian-blue h-full flex flex-col">
                                 <div class="flex items-center mb-2">
                                     <i class="fas fa-globe text-kastovian-blue mr-2"></i>
                                     <h3 class="font-semibold text-gray-700">Nominal GDP</h3>
@@ -243,7 +247,7 @@
                                 <p class="text-2xl font-bold">$17 Trillion</p>
                                 <p class="text-sm text-gray-600">₽510 Trillion</p>
                             </div>
-                            <div class="stat-card bg-gradient-to-r from-gray-50 to-white p-4 rounded border-l-green-500 h-full flex flex-col">
+                            <div class="stat-card bg-gradient-to-r from-green-200 to-white p-4 rounded border-l-green-500 h-full flex flex-col">
                                 <div class="flex items-center mb-2">
                                     <i class="fas fa-exchange-alt text-green-500 mr-2"></i>
                                     <h3 class="font-semibold text-gray-700">Trade Balance</h3>
@@ -251,7 +255,7 @@
                                 <p class="text-2xl font-bold text-green-600">$2.9T Surplus</p>
                                 <p class="text-sm text-gray-600">₽87 Trillion</p>
                             </div>
-                            <div class="stat-card bg-gradient-to-r from-gray-50 to-white p-4 rounded border-l-purple-500 h-full flex flex-col">
+                            <div class="stat-card bg-gradient-to-r from-purple-200 to-white p-4 rounded border-l-purple-500 h-full flex flex-col">
                                 <div class="flex items-center mb-2">
                                     <i class="fas fa-chart-line text-purple-500 mr-2"></i>
                                     <h3 class="font-semibold text-gray-700">Inflation Rate</h3>
@@ -259,14 +263,14 @@
                                 <p class="text-2xl font-bold text-purple-600">2.5%</p>
                                 <p class="text-sm text-gray-600">Stable Target</p>
                             </div>
-                            <div class="stat-card bg-gradient-to-r from-gray-50 to-white p-4 rounded border-l-yellow-500 h-full flex flex-col">
+                            <div class="stat-card bg-gradient-to-r from-yellow-100 to-white p-4 rounded border-l-yellow-500 h-full flex flex-col">
                                 <div class="flex items-center mb-2">
                                     <i class="fas fa-briefcase text-yellow-500 mr-2"></i>
                                     <h3 class="font-semibold text-gray-700">Unemployment</h3>
                                 </div>
                                 <p class="text-2xl font-bold">2.7% <span class="text-sm text-green-500">↓ 0.3%</span></p>
                             </div>
-                            <div class="stat-card bg-gradient-to-r from-gray-50 to-white p-4 rounded border-l-blue-500 h-full flex flex-col">
+                            <div class="stat-card bg-gradient-to-r from-blue-100 to-white p-4 rounded border-l-blue-500 h-full flex flex-col">
                                 <div class="flex items-center mb-2">
                                     <i class="fas fa-landmark text-blue-500 mr-2"></i>
                                     <h3 class="font-semibold text-gray-700">Gov Budget</h3>
@@ -274,7 +278,7 @@
                                 <p class="text-2xl font-bold text-green-600">$700B Surplus</p>
                                 <p class="text-sm text-gray-600">Debt/GDP: 12%</p>
                             </div>
-                            <div class="stat-card bg-gradient-to-r from-gray-50 to-white p-4 rounded border-l-indigo-500 h-full flex flex-col">
+                            <div class="stat-card bg-gradient-to-r from-indigo-100 to-white p-4 rounded border-l-indigo-500 h-full flex flex-col">
                                 <div class="flex items-center mb-2">
                                     <i class="fas fa-user-graduate text-indigo-500 mr-2"></i>
                                     <h3 class="font-semibold text-gray-700">GDP per Capita</h3>
@@ -448,7 +452,7 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr class="hover:bg-gray-50">
+                            <tr class="hover:bg-blue-50">
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
@@ -463,7 +467,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Commercial, Electronics, AI</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">8.7%</td>
                             </tr>
-                            <tr class="hover:bg-gray-50">
+                            <tr class="hover:bg-blue-50">
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
@@ -478,7 +482,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Energy, Petroleum, Chemicals</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">7.2%</td>
                             </tr>
-                            <tr class="hover:bg-gray-50">
+                            <tr class="hover:bg-blue-50">
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
@@ -486,14 +490,14 @@
                                             <i class="fas fa-oil-well text-lg"></i>
                                         </div>
                                         <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">VUKOIL Oil & Gas</div>
+                                            <div class="text-sm font-medium text-gray-900">PSJC VUKOIL Oil & Gas</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Energy, Petrochemicals</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">5.8%</td>
                             </tr>
-                            <tr class="hover:bg-gray-50">
+                            <tr class="hover:bg-blue-50">
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">4</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
@@ -508,7 +512,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Banking, Financial Services</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">4.3%</td>
                             </tr>
-                            <tr class="hover:bg-gray-50">
+                            <tr class="hover:bg-blue-50">
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">5</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
@@ -524,7 +528,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">3.5%</td>
                             </tr>
                         </tr>
-                        <tr class="hover:bg-gray-50">
+                        <tr class="hover:bg-blue-50">
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">6</td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
@@ -539,7 +543,7 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Semiconductors</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">3.5%</td>
                         </tr>
-                        <tr class="hover:bg-gray-50">
+                        <tr class="hover:bg-blue-50">
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">7</td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
@@ -555,7 +559,7 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2.8%</td>
                         </tr>
                     </tr>
-                    <tr class="hover:bg-gray-50">
+                    <tr class="hover:bg-blue-50">
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">8</td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
@@ -570,7 +574,7 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Nuclear Energy</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2.4%</td>
                     </tr>
-                    <tr class="hover:bg-gray-50">
+                    <tr class="hover:bg-blue-50">
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">9</td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
@@ -586,7 +590,7 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2.1%</td>
                     </tr>
                 </tr>
-                <tr class="hover:bg-gray-50">
+                    <tr class="hover:bg-blue-50">
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">10</td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
@@ -783,12 +787,18 @@
                         <div class="relative" style="height: 120px;">
                             <div class="absolute inset-0 flex items-center justify-center">
                                 <svg class="w-32 h-32">
+                                    <defs>
+                                        <linearGradient id="hdiProgressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#ef4444"/>
+                                            <stop offset="100%" stop-color="#3b82f6"/>
+                                        </linearGradient>
+                                    </defs>
                                     <circle cx="64" cy="64" r="56" fill="none" stroke="#e0e0e0" stroke-width="10" stroke-dasharray="314 314" />
-                                    <circle cx="64" cy="64" r="56" fill="none" stroke="#3b82f6" stroke-width="10" stroke-dasharray="290 314" class="progress-ring__circle" />
+                                    <circle cx="64" cy="64" r="56" fill="none" stroke="url(#hdiProgressGradient)" stroke-width="10" stroke-dasharray="290 314" class="progress-ring__circle" />
                                 </svg>
                             </div>
                             <div class="absolute inset-0 flex items-center justify-center">
-                                <span class="text-4xl font-bold text-kastovian-blue">0.923</span>
+                                <span class="text-3xl font-bold text-kastovian-blue">0.923</span>
                             </div>
                         </div>
                         <p class="text-center text-sm text-gray-600 mt-4">Global rank: 4th | Change: +0.012 from 2024</p>
